@@ -5,10 +5,6 @@
     <title>文件上传测试</title>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <style>
-        #pic img{
-            width: 200px;
-            height: 150px;
-        }
     </style>
 </head>
 <body>
@@ -30,42 +26,59 @@
                 <input id="fileInput" class="" type="file" onchange="readInfo()" accept="image/*" hidden>
             </div>
 
+            <div>
+                <label for="fileUpload">点击上传文件</label>
+                <input id="fileUpload" class="" type="file" accept="application/*" hidden>
+            </div>
         </form>
     </div>
-<#--图片预览区域-->
+
+    <#--图片预览区域-->
     <div id="pic">
 
     </div>
 
+    <#--文件预览区域-->
+    <div id="pdf">
+
+    </div>
 
     <div>
         <button id="btn">提交</button>
     </div>
 </div>
-
+<script>
+    let pdfList = [];
+    $('#fileUpload').change(function () {
+       let pdfArr = $('#fileUpload')[0].files;
+       if (pdfArr.length>0){
+           pdfList.push(pdfArr[0])
+       }
+    });
+</script>
 <script>
 
-    let fileList = [];
+    let picList = [];
 
     // 读取文件信息并存储到本地变量中用于上传
     function readInfo() {
         let fileArr = document.getElementById("fileInput").files;
         if (fileArr.length > 0) {
-            fileList.push(fileArr[0]);
+            picList.push(fileArr[0]);
             let reader = new FileReader();
             reader.onload = function (e) {
                 var img = document.createElement('img');
                 img.src = this.result;
                 $('#pic').append(img);
-            }
+            };
             reader.readAsDataURL(fileArr[0]);
         }
     }
 
     function doSubmit() {
         var data = new FormData($("#form2")[0]);
-        for (var i = 0; i < fileList.length; i++) {
-            data.append('file', fileList[i]);
+        for (var i = 0; i < picList.length; i++) {
+            data.append('file', picList[i]);
         }
         $.ajax({
             type: 'post',
@@ -83,13 +96,18 @@
         // 通过formData提交带有文件的表单数据
         $('#btn').click(function () {
             var formData = new FormData($('form')[0]);
-            for (var i = 0; i < fileList.length; i++) {
-                formData.append('file', fileList[i]);
+            for (var i = 0; i < picList.length; i++) {
+                formData.append('pic', picList[i]);
             }
+            for(var i = 0; i < pdfList.length;i++){
+                formData.append('pdf',pdfList[i]);
+            }
+
             console.log(formData);
+
             $.ajax({
                 type: 'post',
-                url: '/demoForm',
+                url: '/fileUpload',
                 dataType: 'json',
                 data: formData,
                 contentType: false,
@@ -105,7 +123,7 @@
         });
 
         $("#info").click(function () {
-            console.log(fileList)
+            console.log(picList)
         });
     });
 </script>
