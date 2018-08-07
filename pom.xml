@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>jtm-common</module>
+        <module>jtm-main</module>
     </modules>
     <packaging>pom</packaging>
 

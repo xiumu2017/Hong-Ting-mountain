@@ -1,4 +1,4 @@
-package com.paradise.controller;
+package com.paradise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
