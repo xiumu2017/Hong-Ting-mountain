@@ -20,4 +20,14 @@ package com.paradise.common;
  * @version 1.0.0 <br/>
  */
 public class StringAbt {
+    public static void main(String[] args) {
+        String js = " html += 'id=\""+ getName() + "\" + \"_\" + i />'";
+
+        String  x  = "<input  type=\"radio\" id=\"" + getName() + "\" + i + '\"  ";
+        System.out.println(x);
+    }
+
+    public static String getName(){
+        return "name_";
+    }
 }
