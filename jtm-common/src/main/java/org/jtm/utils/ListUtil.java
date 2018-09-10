@@ -12,15 +12,10 @@ public class ListUtil {
     public static void main(String[] args) {
         List<Entity> list = new ArrayList<>();
 
-        Entity e1 = new Entity();
-        e1.setId("1");
-        e1.setName("n1");
-
+        Entity e1 = new Entity("1", "n1");
         list.add(e1);
 
-        Entity e2 = new Entity();
-        e2.setName("e2");
-        e2.setId("2");
+        Entity e2 = new Entity("2", "n2");
 
         list.add(e2);
 

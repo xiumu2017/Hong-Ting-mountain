@@ -6,6 +6,15 @@ package org.jtm.utils;
 public class Entity {
     private String id;
     private String name;
+    private boolean flag;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     public Entity(String id, String name) {
         this.id = id;
